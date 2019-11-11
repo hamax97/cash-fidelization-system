@@ -1,0 +1,36 @@
+<!-- <div class="container">
+    <div class="row">
+        <img src="assets/locatel-icon.png" class="rounded" style="width: 5%; height: 5%;" alt="Plenia Locatel icon">
+        <p class="h1">Plenia Locatel Fidelization System</p>
+    </div>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+
+    <button class="navbar-brand btn btn-success" (click)="onButtonPressed('goHome')">Home</button>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+        
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+        <ul class="navbar-nav mr-auto">
+            <div *ngFor="let button of navbarButtons">
+
+                <li *ngIf="button.router" class="nav-item">
+                    <button class="nav-link btn btn-success" (click)="onButtonPressed(button.function)">{{ button.buttonName }}</button>
+                </li>
+
+                <li *ngIf="button.dropdown" class="nav-item dropdown" dropdown>
+                    <a dropdownToggle class="nav-link dropdown-toggle" role="button">
+                        {{ button.buttonName }}</a>
+                        <ul *dropdownMenu class="dropdown-menu">
+                            <li *ngFor="let buttonProps of button.buttonsProperties">
+                                <a class="dropdown-item" (click)="onButtonPressed(buttonProps.function)">{{ buttonProps.name }}</a>
+                            </li>
+                        </ul>
+                </li>
+            </div>
+        </ul>
+        <button class="btn btn-danger my-2 my-sm-0">Log Out</button>
+    </div>
+</nav>
