@@ -18,16 +18,12 @@ export class SkeletonInterfaceComponent implements OnInit {
   @Input() navbarButtons;
 
   constructor() {
-    //this.navbarButtons = navbarButtons;
     // var button1 = {router: true, buttonName: "example", function: "function1"};
     // var button2 = {
     //   dropdown: true, 
     //   buttonName: 'example2',
     //   buttonsProperties: [{name: "Drop1", function: "func1"}, {name: "Drop2", function: "func2"}, {name: "Drop3", function: "func3"}]
     // };
-
-    // this.navbarButtons.push(button1);
-    // this.navbarButtons.push(button2);
   }
 
   ngOnInit() {

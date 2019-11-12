@@ -6,6 +6,28 @@
 </div>
 
 <div *ngIf="showPointsEquivalence">
-    <!-- CODE HERE -->
-    <p>POINTS EQUIVALENCE HERE</p>
+    <div class="container text-center">
+        <div class="row">
+            <p class="h4 col-12">Current equivalence</p>
+        </div>
+        <div class="row">
+            <button class="btn btn-outline-success col-sm">1 Point</button>
+            <p class="h4 col-sm">&harr;</p>
+            <button class="btn btn-outline-success col-sm">{{ currentEquivalence }} {{ franchiseCurrency }}</button>
+        </div>
+        <br>
+        
+        <div class="row">
+            <p class="h4 col-12">New equivalence</p>
+        </div>
+        <div class="row">
+            <button class="btn btn-outline-success col-sm">1 Point</button>
+            <p class="h4 col-sm">&harr;</p>
+            <input type="number" class="form-control col-sm" placeholder="Enter the equivalent in {{ franchiseCurrency }}" #newEquivalence>
+        </div>
+        <br>
+        <div class="row">
+            <button type="submit" class="btn btn-danger col-sm" (click)="onUpdateEquivalence(newEquivalence.value)">Update</button>
+        </div>
+    </div>
 </div>
