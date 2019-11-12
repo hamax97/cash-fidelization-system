@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { FranchiseInterfaceService } from './franchise-interface.service';
 
@@ -21,8 +22,11 @@ export class FranchiseInterfaceComponent implements OnInit {
   private backendService: FranchiseInterfaceService = new FranchiseInterfaceService();
   private currentEquivalence = null;
   private franchiseCurrency: string;
+  private modalCloseResult;
 
-  constructor() {
+  constructor(
+    private modalService: NgbModal
+  ) {
     // Obtain franchise ID from the URL.
     this.franchiseID = "123asd123";
 
@@ -47,17 +51,22 @@ export class FranchiseInterfaceComponent implements OnInit {
     }
   }
 
-  onUpdateEquivalence(newEquivalence) {
+  onUpdateEquivalence(newEquivalence, modalAlertContent, modalErrorContent) {
 
     var newEquivalenceValue = Number(newEquivalence);
     // Send update to backend.
-    if (newEquivalenceValue != 0 && newEquivalenceValue != NaN) {
-      this.backendService.updateCurrentEquivalence(newEquivalenceValue);
+    if (newEquivalenceValue != 0 && !Number.isNaN(newEquivalenceValue)) {
+      this.showAlert(modalAlertContent, 'modal-are-you-sure');
     } else {
-      // Show alert instead of console.log()
-      console.log("Insert a valid value");
+      this.showAlert(modalErrorContent, 'modal-invalid-equivalence');
     }
   }
+
+  sendUpdatedValue(newEquivalenceValue, modalObject) {
+    this.backendService.updateCurrentEquivalence(newEquivalenceValue);
+    modalObject.close('Ok click');
+  }
+
 
   showHomeSection() {
     // Hide other possible visible sections.
@@ -72,5 +81,23 @@ export class FranchiseInterfaceComponent implements OnInit {
     this.showHome = false;
 
     this.showPointsEquivalence = true;
+  }
+
+  showAlert(content, modalID) {
+    this.modalService.open(content, {ariaLabelledBy: modalID}).result.then((result) => {
+      this.modalCloseResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.modalCloseResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }

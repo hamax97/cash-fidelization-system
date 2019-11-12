@@ -12,6 +12,7 @@ import { FranchiseInterfaceComponent } from './franchise-interface/franchise-int
 import { AuthorizedEmployeeInterfaceComponent } from './authorized-employee-interface/authorized-employee-interface.component';
 import { SkeletonInterfaceComponent } from './skeleton-interface/skeleton-interface.component';
 import { HomeInterfaceComponent } from './home-interface/home-interface.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: SkeletonInterfaceComponent },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
       appRoutes
     ),
     BsDropdownModule.forRoot(), // Bootstrap JS. forRoot() make available everywhere.
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,11 +23,43 @@
         <div class="row">
             <button class="btn btn-outline-success col-sm">1 Point</button>
             <p class="h4 col-sm">&harr;</p>
-            <input type="number" class="form-control col-sm" placeholder="Enter the equivalent in {{ franchiseCurrency }}" #newEquivalence>
+            <input class="form-control col-sm" placeholder="Enter the equivalent in {{ franchiseCurrency }}" #newEquivalence>
         </div>
         <br>
         <div class="row">
-            <button type="submit" class="btn btn-danger col-sm" (click)="onUpdateEquivalence(newEquivalence.value)">Update</button>
+            <button type="submit" class="btn btn-danger col-sm" (click)="onUpdateEquivalence(newEquivalence.value, modalAlertContent, modalErrorContent)">Update</button>
+
+            <ng-template #modalAlertContent let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-are-you-sure">Are you sure?</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to update the points/money equivalence from <span class="text-primary">{{ currentEquivalence }} {{ franchiseCurrency }}</span>
+                    to <span class="text-primary">{{ newEquivalence.value }}  {{ franchiseCurrency }}</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+                    <button type="button" ngbAutofocus class="btn btn-danger" (click)="sendUpdatedValue(newEquivalence.value, modal)">Yes, Update</button>
+                </div>
+            </ng-template>
+
+            <ng-template #modalErrorContent let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-invalid-equivalence">Invalid equivalence value</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please insert a valid value, you inserted: <span class="text-danger">{{ newEquivalence.value }}</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" (click)="modal.dismiss('Close click')">Understood</button>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

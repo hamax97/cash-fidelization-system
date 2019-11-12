@@ -6,8 +6,73 @@
 </div>
 
 <div *ngIf="showAnalytics">
-    <!-- CODE HERE -->
-    <p>Analytics Section HERE!</p>
+    <div class="container text-center">
+        <div>
+            <p class="h2">Filters</p>
+            <p class="h4">Points</p>
+            <div class="row">
+                <p class="h5 col-sm">Accumulated:</p>
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Lower limit</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Upper limit</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
+            <div class="row">
+                <p class="h5 col-sm">Redeemed:</p>
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Lower limit</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Upper limit</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
+            <p class="h4">Prize</p>
+            <div class="row">
+                <p class="h5 col-sm">Product prize:</p>
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Lower limit</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Upper limit</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
+            <p class="h4">Products</p>
+            <div *ngFor="let productInput of productInputs" class="row">
+                <div class="input-group input-group-sm mb-3 col-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
